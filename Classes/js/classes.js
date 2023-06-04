@@ -122,12 +122,44 @@ class Person {
     }
 }
 
+class Teacher extends Person {
+
+    prop1 = 'value1';
+    prop2 = 'value2';
+
+    constructor(firstName, lastName, prop1) {
+        super(firstName, lastName)
+        this.prop1 = prop1;
+    }
+
+    fullName() {
+        return 'Override method';
+    }
+}
+
+class Student extends Person {
+
+    prop2 = 'value2';
+
+    constructor(firstName, lastName, prop1) {
+        super(firstName, lastName)
+        this.prop1 = prop1;
+        this.newProp = 'something';
+    }
+
+    fullName() {
+        return 'Override method';
+    }
+}
+
 window.addEventListener('load', () => {
 
     document.getElementById('click').addEventListener('click', () => {
-        const newPerson = new Person(document.getElementById('myinput').value)
+
+        const newPerson = new Teacher(document.getElementById('myinput').value)
         console.log(newPerson)
-        console.log(newPerson.createUserTitle())
+        console.log(newPerson.fullName())
+
     })
 })
 
