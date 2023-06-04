@@ -26,6 +26,7 @@ class Person {
     inroduceSelf() {
         console.log(`Hi I am ${this.fullName()}`)
     }
+
 }
 
 class Student extends Person {
@@ -59,6 +60,13 @@ I am in my ${this.year} year!.`);
     assignClass(assignedClass) {
         this.assignedClass = assignedClass;
     }
+
+    render() {
+        const elem = document.createElement('p');
+        elem.innerHTML = 'Student: ' + this.fullName();
+
+        return elem;
+    }
 }
 
 // Create a new Teacher class, extending the Person class.
@@ -76,6 +84,12 @@ class Teacher extends Person {
         this.yearsExperience = yearsExperience;
     }
 
+    render() {
+        const elem = document.createElement('p');
+        elem.innerHTML = 'Teacher: ' + this.fullName();
+
+        return elem;
+    }
 
 }
 
@@ -95,15 +109,10 @@ class Class {
 
         const classContainer = document.createElement('div');
 
-        const teacherElem = document.createElement('p');
-        teacherElem.innerHTML = `Teacher: ${this.classTeacher.fullName()}`
-        classContainer.appendChild(teacherElem);
+        classContainer.appendChild(this.classTeacher.render());
 
         this.classStudents.forEach((student) => {
-            const studentContainer = document.createElement('p');
-            studentContainer.innerHTML = student.fullName()
-
-            classContainer.appendChild(studentContainer);
+            classContainer.appendChild(student.render());
         })
 
         return classContainer;
